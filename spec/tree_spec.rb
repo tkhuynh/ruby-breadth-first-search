@@ -23,6 +23,9 @@ RSpec.describe Tree do
     end
 
     describe "#breadth_first_search" do
+      ##
+      # Builds the tree with nested children.
+      # See bottom of this file for a diagram of the tree structure.
       before do
         @b_node = Tree.new("B")
         @c_node = Tree.new("C")
@@ -31,11 +34,13 @@ RSpec.describe Tree do
         @f_node = Tree.new("F")
         @g_node = Tree.new("G")
         @g_node_closest = Tree.new("G")
-        @my_tree.children << [@b_node, @c_node]
-        @b_node.children << [@d_node, @e_node, @f_node]
+        @my_tree.children << @b_node
+        @my_tree.children << @c_node
+        @b_node.children << @d_node
+        @b_node.children << @e_node
+        @b_node.children << @f_node
         @c_node.children << @g_node_closest
         @e_node.children << @g_node
-        # see bottom of file for diagram of tree structure
       end
 
       context :found do
