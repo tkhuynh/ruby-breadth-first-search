@@ -33,6 +33,19 @@ class Tree
   # Looks for first node with key equal to the +target_key+ param.
   # Returns nil if no such node is found.
   def breadth_first_search(target_key)
+    queue = [self]
+    while queue.any?
+      # remove the first node from the queue
+      current_node = queue.shift
+      # check if the current node's key equals the target key (and return if so)
+      if current_node.key == target_key
+        return current_node
+      end
+      # add the current node's children to the queue
+      queue += current_node.children
+    end
+
+    # if we finish the while loop without returning a node, return nil
     nil
   end
 
