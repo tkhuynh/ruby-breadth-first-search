@@ -37,7 +37,7 @@ class Tree
     while queue.any?
       # remove the first node from the queue
       current_node = queue.shift
-      # check if the current node's key equals the target key (and return if so)
+      # check if the current node's key equals the target key (and return it if so)
       if current_node.key == target_key
         return current_node
       end
