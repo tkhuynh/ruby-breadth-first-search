@@ -30,8 +30,10 @@ RSpec.describe Tree do
         @e_node = Tree.new("E")
         @f_node = Tree.new("F")
         @g_node = Tree.new("G")
+        @g_node_closest = Tree.new("G")
         @my_tree.children << [@b_node, @c_node]
         @b_node.children << [@d_node, @e_node, @f_node]
+        @c_node.children << @g_node_closest
         @e_node.children << @g_node
         # see bottom of file for diagram of tree structure
       end
@@ -43,6 +45,10 @@ RSpec.describe Tree do
 
         it "should find a nested child node" do
           expect(@my_tree.breadth_first_search("E")).to equal(@e_node)
+        end
+
+        it "should find the closest matching node if there are duplicate keys" do
+          expect(@my_tree.breadth_first_search("G")).to equal(@g_node_closest)
         end
       end
 
@@ -61,9 +67,9 @@ end
 # Represents tree structure for #breadth_first_search spec.
 #
 #          D
-#        /
-#     B  -- E -- G
+#       /
+#     B -- E -- G
 #   /   \
 # A        F
 #   \
-#     C
+#     C -- G
