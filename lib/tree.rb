@@ -33,6 +33,34 @@ class Tree
   # Looks for first node with key equal to the +target_key+ param.
   # Returns nil if no such node is found.
   def breadth_first_search(target_key)
+    # if target_key == @key 
+    #   return @key
+    # else
+    #   @children.each do |child|
+    #     if child.key == target_key
+    #       return child
+    #     end
+    #   end
+    #   @children.each do |child|
+    #     child.children.each do |gc|
+    #       if gc.key == target_key
+    #         return gc
+    #       end
+    #     end
+    #   end
+    #   return nil
+    # end
+    q = [self] # first parent
+    while q.any?
+      q.each do |node|
+        if target_key == node.key
+          return node
+        else 
+          q += node.children
+          q.shift
+        end
+      end
+    end
     nil
   end
 
