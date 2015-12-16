@@ -56,8 +56,8 @@ class Tree
         if target_key == node.key
           return node
         else 
-          q += node.children
-          q.shift
+          q += node.children # add first parent child into q
+          q.shift # remove first parent
         end
       end
     end
